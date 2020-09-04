@@ -870,7 +870,7 @@ When using dot-notation, you must enclose the path in quotes:
 ## Assignment 1: The Basics & CRUD Operations
 
 1. Insert 3 patient records (one nested document) with at least 1 history entry per patient
-   
+
    ```
    > db.patients.insertOne({firstName: "Ryan", lastName: "Seit", age: 38, history: [{disease: "cold", treatment: "antibiotics"}]})
    
@@ -878,13 +878,13 @@ When using dot-notation, you must enclose the path in quotes:
    
    > db.patients.insertOne({firstName: "Nick", lastName: "Shaffer", age: 38, history: [{disease: "cold", treatment: "antibiotics"}]})
    ```
-   
+
 2. Update patient data of 1 patient with new age, name and history entry
 
-  ```
-  > db.patients.updateOne({firstName: "Gina"}, {$set: {lastName: "Seit", age: 34, history: [{disease: "flu", treatment: "zinc"}]}})
+   ```
+   > db.patients.updateOne({firstName: "Gina"}, {$set: {lastName: "Seit", age: 34, history: [{disease: "flu", treatment: "zinc"}]}})
 
-  {
+   {
     "_id" : ObjectId("5f4e6007c8e3d390cafa5956"),
     "firstName" : "Gina",
     "lastName" : "Seit",
@@ -893,34 +893,40 @@ When using dot-notation, you must enclose the path in quotes:
       "disease" : "flu",
       "treatment" : "zinc"
     }]
-  }
-  ```
+   }
+   ```
 
 3. Find all patients who are older than 30 (or a value of your choice)
 
-  ```
-  db.patients.find({age: {$gt: 35}})
+   ```
+   db.patients.find({age: {$gt: 35}})
 
-  { "_id" : ObjectId("5f4e5fd6c8e3d390cafa5955"), "firstName" : "Ryan", "lastName" : "Seit", "age" : 38, "history" : [ { "disease" : "cold", "treatment" : "antibiotics" } ] }
+   { "_id" : ObjectId("5f4e5fd6c8e3d390cafa5955"), "firstName" : "Ryan", "lastName" : "Seit", "age" : 38, "history" : [ { "disease" : "cold", "treatment" : "antibiotics" } ] }
 
-  { "_id" : ObjectId("5f4e6018c8e3d390cafa5957"), "firstName" : "Nick", "lastName" : "Shaffer", "age" : 38, "history" : [ { "disease" : "cold", "treatment" : "antibiotics" } ] }
-  ```
+   { "_id" : ObjectId("5f4e6018c8e3d390cafa5957"), "firstName" : "Nick", "lastName" : "Shaffer", "age" : 38, "history" : [ { "disease" : "cold", "treatment" : "antibiotics" } ] }
+   ```
 
 4. Delete all patients who got a cold as a disease
 
-  ```
-  > db.patients.deleteMany({"history.disease": "cold"})
-  { "acknowledged" : true, "deletedCount" : 2 }
+   ```
+   > db.patients.deleteMany({"history.disease": "cold"})
+   { "acknowledged" : true, "deletedCount" : 2 }
 
-  > db.patients.find().pretty()
-  {
+   > db.patients.find().pretty()
+   {
     "_id" : ObjectId("5f4e6007c8e3d390cafa5956"),
     "firstName" : "Gina",
     "lastName" : "Seit",
     "age" : 34,
     "history" : [{
-		  "disease" : "flu",
-		  "treatment" : "zinc"
+    "disease" : "flu",
+    "treatment" : "zinc"
     }]
-  }
-  ```
+   }
+   ```
+
+---
+
+## Summary
+
+![](2020-09-01-11-13-15.png)
